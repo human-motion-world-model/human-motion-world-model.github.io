@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Motion-Informed World Models — ECCV 2026 Workshop</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAFAF7;
+  --white: #FFFFFF;
+  --peach: #FFE0CC;
+  --peach-deep: #F5A67A;
+  --pink: #FCCDD3;
+  --pink-deep: #E88D9A;
+  --lavender: #DDD2F5;
+  --lavender-deep: #A78BDA;
+  --mint: #C8F0DC;
+  --mint-deep: #6DC09B;
+  --sky: #C4E3FA;
+  --sky-deep: #6DB5E0;
+  --yellow: #FFF2C4;
+  --yellow-deep: #E5C84E;
+  --coral: #F28B82;
+  --text: #2D2B3A;
+  --text-mid: #55526A;
+  --text-light: #8A879C;
+  --border: rgba(45,43,58,0.08);
+  --card-shadow: 0 2px 16px rgba(45,43,58,0.06);
+  --card-hover-shadow: 0 8px 30px rgba(45,43,58,0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(250,250,247,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.nav-links { display: flex; gap: 0.25rem; }
+
+nav a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  background: var(--lavender);
+  color: var(--text);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 35%, rgba(221,210,245,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 55%, rgba(252,205,211,0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 85%, rgba(200,240,220,0.2) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: var(--white);
+  color: var(--text-mid);
+  padding: 6px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-pills {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid;
+}
+
+.hero-pill:nth-child(1) { background: rgba(255,224,204,0.5); border-color: var(--peach); color: #9B5E30; }
+.hero-pill:nth-child(2) { background: rgba(200,240,220,0.5); border-color: var(--mint); color: #3A7D5B; }
+.hero-pill:nth-child(3) { background: rgba(221,210,245,0.5); border-color: var(--lavender); color: #6B55A0; }
+.hero-pill:nth-child(4) { background: rgba(196,227,250,0.5); border-color: var(--sky); color: #3A7BA5; }
+
+.cta-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.cta-btn.primary {
+  background: var(--text);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(45,43,58,0.2);
+}
+.cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(45,43,58,0.25);
+}
+
+.cta-btn.secondary {
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+}
+.cta-btn.secondary:hover {
+  background: var(--lavender);
+  border-color: var(--lavender);
+}
+
+/* Sections */
+section {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lavender-deep);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* About */
+.about-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+  line-height: 1.8;
+  font-size: 1rem;
+  color: var(--text-mid);
+}
+
+.about-card p + p { margin-top: 1rem; }
+.about-card strong { color: var(--text); font-weight: 600; }
+
+/* Topics */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.topic-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.topic-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.topic-card:nth-child(1)::before { background: linear-gradient(90deg, var(--pink-deep), var(--peach-deep)); }
+.topic-card:nth-child(2)::before { background: linear-gradient(90deg, var(--lavender-deep), var(--sky-deep)); }
+.topic-card:nth-child(3)::before { background: linear-gradient(90deg, var(--mint-deep), var(--yellow-deep)); }
+
+.topic-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.topic-card:nth-child(1) .topic-icon { background: var(--pink); }
+.topic-card:nth-child(2) .topic-icon { background: var(--lavender); }
+.topic-card:nth-child(3) .topic-icon { background: var(--mint); }
+
+.topic-card h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.topic-card ul { list-style: none; padding: 0; }
+
+.topic-card li {
+  padding: 5px 0 5px 1.3rem;
+  position: relative;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.topic-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.topic-card:nth-child(1) li::before { background: var(--pink-deep); }
+.topic-card:nth-child(2) li::before { background: var(--lavender-deep); }
+.topic-card:nth-child(3) li::before { background: var(--mint-deep); }
+
+/* Speakers */
+.speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.25rem;
+}
+
+.speaker-card {
+  text-align: center;
+  padding: 2rem 1.2rem 1.8rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.speaker-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.speaker-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.speaker-card:nth-child(1) .speaker-avatar { background: var(--peach); }
+.speaker-card:nth-child(2) .speaker-avatar { background: var(--mint); }
+.speaker-card:nth-child(3) .speaker-avatar { background: var(--lavender); }
+.speaker-card:nth-child(4) .speaker-avatar { background: var(--sky); }
+.speaker-card:nth-child(5) .speaker-avatar { background: var(--yellow); }
+
+.speaker-card h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+
+.speaker-affil {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+}
+
+.speaker-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+
+.speaker-card:nth-child(1) .speaker-tag { background: var(--peach); }
+.speaker-card:nth-child(2) .speaker-tag { background: var(--mint); }
+.speaker-card:nth-child(3) .speaker-tag { background: var(--lavender); }
+.speaker-card:nth-child(4) .speaker-tag { background: var(--sky); }
+.speaker-card:nth-child(5) .speaker-tag { background: var(--yellow); }
+
+/* Schedule */
+.schedule-wrapper {
+  max-width: 660px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.schedule-item:last-child { border-bottom: none; }
+.schedule-item:hover { background: rgba(221,210,245,0.08); }
+
+.schedule-time {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  min-width: 54px;
+  color: var(--text);
+}
+
+.schedule-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.schedule-item:nth-child(10n+1) .schedule-dot { background: var(--coral); }
+.schedule-item:nth-child(10n+2) .schedule-dot { background: var(--peach-deep); }
+.schedule-item:nth-child(10n+3) .schedule-dot { background: var(--lavender-deep); }
+.schedule-item:nth-child(10n+4) .schedule-dot { background: var(--mint-deep); }
+.schedule-item:nth-child(10n+5) .schedule-dot { background: var(--sky-deep); }
+.schedule-item:nth-child(10n+6) .schedule-dot { background: var(--pink-deep); }
+.schedule-item:nth-child(10n+7) .schedule-dot { background: var(--yellow-deep); }
+.schedule-item:nth-child(10n+8) .schedule-dot { background: var(--coral); }
+.schedule-item:nth-child(10n+9) .schedule-dot { background: var(--lavender-deep); }
+.schedule-item:nth-child(10n+10) .schedule-dot { background: var(--mint-deep); }
+
+.schedule-info { flex: 1; }
+
+.schedule-info h4 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.schedule-info p {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 1px;
+}
+
+/* Organizers */
+.organizer-group-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--lavender);
+  display: inline-block;
+}
+
+.organizer-group-title:first-of-type { margin-top: 0; }
+
+.organizers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.org-card {
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 1rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.25s ease;
+}
+
+.org-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.org-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: var(--cream);
+}
+
+.org-card h4 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 0.15rem;
+}
+
+.org-card .org-affil {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.org-card .org-topic {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  line-height: 1.35;
+}
+
+/* Dates */
+.dates-banner {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+.dates-banner h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.dates-banner > p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 1.8rem;
+}
+
+.dates-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.date-item {
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  min-width: 170px;
+  text-align: center;
+  border: 1px solid;
+}
+
+.date-item:nth-child(1) { background: rgba(255,224,204,0.3); border-color: var(--peach); }
+.date-item:nth-child(2) { background: rgba(221,210,245,0.3); border-color: var(--lavender); }
+.date-item:nth-child(3) { background: rgba(200,240,220,0.3); border-color: var(--mint); }
+.date-item:nth-child(4) { background: rgba(196,227,250,0.3); border-color: var(--sky); }
+
+.date-item .label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+
+.date-item .value {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-light);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+footer a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover { color: var(--lavender-deep); }
+
+.footer-sub {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  opacity: 0.7;
+}
+
+/* Background shapes */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.06;
+  animation: shape-drift 25s ease-in-out infinite;
+}
+
+@keyframes shape-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -20px); }
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-logo { font-size: 0.85rem; }
+  nav a { font-size: 0.8rem; padding: 5px 10px; }
+  section { padding: 3.5rem 1rem; }
+  .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+  .schedule-item { padding: 0.8rem 1rem; }
+  .about-card { padding: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .speakers-grid { grid-template-columns: 1fr; }
+  .hero-pills { gap: 0.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-shapes">
+  <div class="bg-shape" style="width:400px;height:400px;top:5%;left:-5%;background:var(--lavender);"></div>
+  <div class="bg-shape" style="width:350px;height:350px;top:40%;right:-8%;background:var(--pink);animation-delay:-8s;"></div>
+  <div class="bg-shape" style="width:300px;height:300px;bottom:10%;left:10%;background:var(--mint);animation-delay:-15s;"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">HMWM @ ECCV 2026</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#topics">Topics</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#organizers">Organizers</a>
+    <a href="#dates">Dates</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="badge"><span>📍</span> ECCV 2026 Workshop</div>
+    <h1>Human Motion-Informed<br>World Models</h1>
+    <p class="subtitle">
+      Bridging human motion modeling, visual world models, and embodied AI for socially intelligent perception and action.
+    </p>
+    <div class="hero-pills">
+      <span class="hero-pill">🏃 Motion Modeling</span>
+      <span class="hero-pill">🌍 World Models</span>
+      <span class="hero-pill">🤖 Embodied AI</span>
+      <span class="hero-pill">🚗 Autonomous Systems</span>
+    </div>
+    <div class="cta-row">
+      <a href="#dates" class="cta-btn primary">Key Dates</a>
+      <a href="#topics" class="cta-btn secondary">Call for Papers</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Overview</div>
+    <div class="section-title">About the Workshop</div>
+  </div>
+  <div class="about-card">
+    <p>Human motion and activity provide a critical signal for understanding, predicting, and interacting with dynamic environments. In recent years, computer vision has made significant progress in human motion perception, activity understanding, and motion generation, providing a strong foundation for modeling human behavior and dynamics. Integrating these advances into visual world models that support prediction, planning, and decision-making is a key next step toward enabling embodied intelligent systems to reason and act effectively in human-populated scenes.</p>
+    <p>This workshop focuses on the challenge of integrating rich models of human motion and behavior into world models, an increasingly important yet still under-explored direction in visual world modeling.
+Topics include: 1. modeling human motion and activity in complex, interactive scenes; 2. learning dynamic world models that incorporate human behavior to represent scenes, objects, and affordances; 3. enabling efficient and robust real-world deployment, including integrated perception-planning, safe navigation and autonomous driving, and improved generalization under noise, occlusions, and distribution shifts.</p>
+<p>This topic is closely aligned with recent progress in visual world modeling and generative simulation which aim to capture vision-based representations of the scene structure, object relations, and human dynamics. The workshop will bring together research on human motion and activity modeling, dynamic scene understanding, and world models that explicitly account for human behavior as a central component of the environment. By uniting perspectives from computer vision, embodied AI, robotics, and graphics, the workshop provides a forum to explore human-centered world models that enable socially intelligent perception and action in applications such as dynamic scene understanding, predictive navigation, autonomous driving, and human-robot interaction.</p>
+  </div>
+</section>
+
+<section id="topics" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Call for Papers</div>
+    <div class="section-title">Topics of Interest</div>
+  </div>
+  <div class="topics-grid">
+    <div class="topic-card">
+      <div class="topic-icon">🏃‍♂️</div>
+      <h3>Human Motion & Activity Modeling</h3>
+      <ul>
+        <li>Trajectory, pose, mesh, and flow representations of human motion</li>
+        <li>Vision-based motion perception, tracking, and forecasting</li>
+        <li>Human motion generation and digital human modeling</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">🌐</div>
+      <h3>Dynamic World Models</h3>
+      <ul>
+        <li>Generative and predictive world models</li>
+        <li>Visual world models incorporating human motion and behavior</li>
+        <li>Scene, object, and affordance modeling conditioned on human motion</li>
+        <li>Scene representations for dynamic environments</li>
+      </ul>
+    </div>
+    <div class="topic-card">
+      <div class="topic-icon">🚀</div>
+      <h3>Efficient and Robust Real-World Deployment</h3>
+      <ul>
+        <li>Integrated perception and planning in human motion-informed models</li>
+        <li>Design choices under computational and real-time constraints</li>
+        <li>Robustness to noise, occlusions, and distribution shifts</li>
+        <li>Generalization across environments, agents, and human behaviors</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="speakers" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Keynotes</div>
+    <div class="section-title">Invited Speakers</div>
+  </div>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <div class="speaker-avatar">👤</div>
+      <h3>Gerard Pons-Moll</h3>
+      <div class="speaker-affil">Professor, University of Tübingen</div>
+      <span class="speaker-tag">Human motion, 3D tracking, virtual humans</span>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">👤</div>
+      <h3>Kai O. Arras</h3>
+      <div class="speaker-affil">Professor, University of Stuttgart</div>
+      <span class="speaker-tag">Embodied intelligence, social robotics</span>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">👤</div>
+      <h3>Matthieu Cord</h3>
+      <div class="speaker-affil">Professor, Sorbonne University / Director, valeo.ai</div>
+      <span class="speaker-tag">World models, vision-language models</span>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">👤</div>
+      <h3>Lingni Ma</h3>
+      <div class="speaker-affil">Research Scientist, Meta Reality Labs</div>
+      <span class="speaker-tag">3D scene modeling, digital humans</span>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">👤</div>
+      <h3>Yuji Yasui</h3>
+      <div class="speaker-affil">Executive Chief Engineer, Honda R&D</div>
+      <span class="speaker-tag">Autonomous driving, human-machine collaboration</span>
+    </div>
+  </div>
+</section>
+
+<section id="schedule" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Program</div>
+    <div class="section-title">Workshop Schedule</div>
+    <p class="section-desc">Half-day program</p>
+  </div>
+  <div class="schedule-wrapper">
+    <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome & Opening Remarks</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 1</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 2</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 3</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break & Poster Session</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 4</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Presentation & Award</h4><p>Selected paper oral presentation</p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 5</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">12:25</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&A with speakers</p></div></div>
+    <div class="schedule-item"><div class="schedule-time">12:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Closing Remarks</h4></div></div>
+  </div>
+</section>
+
+<section id="organizers" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Team</div>
+    <div class="section-title">Organizers</div>
+  </div>
+  <div class="organizer-group-title">PhD Student Organizers</div>
+  <div class="organizers-grid">
+    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Yasamin Borhani</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">3D localization & trajectory forecasting</p></div>
+    <div class="org-card"><div class="org-avatar">👩‍💻</div><h4>Mariam Hassan</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">World models for autonomous driving</p></div>
+    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Yang Gao</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">Motion prediction & 3D perception</p></div>
+    <div class="org-card"><div class="org-avatar">👩‍🎓</div><h4>Yi Yang</h4><p class="org-affil">KTH / Scania, Sweden</p><p class="org-topic">Prediction & planning in traffic</p></div>
+    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Yufei Zhu</h4><p class="org-affil">Örebro University, Sweden</p><p class="org-topic">Probabilistic human motion patterns</p></div>
+  </div>
+  <div class="organizer-group-title">Senior Organizers</div>
+  <div class="organizers-grid">
+    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Andrey Rudenko</h4><p class="org-affil">TU Munich, Germany</p><p class="org-topic">Motion prediction & HRI</p></div>
+    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Wanyu Ma</h4><p class="org-affil">The Chinese University of Hong Kong, China</p><p class="org-topic">HRI & robotic manipulation</p></div>
+    <div class="org-card"><div class="org-avatar">👨‍🏫</div><h4>Achim J. Lilienthal</h4><p class="org-affil">TU Munich, Germany</p><p class="org-topic">Multi-modal perception & navigation</p></div>
+    <div class="org-card"><div class="org-avatar">👨‍🏫</div><h4>Martin Magnusson</h4><p class="org-affil">Örebro University, Sweden</p><p class="org-topic">3D mapping & autonomous systems</p></div>
+    <div class="org-card"><div class="org-avatar">🧑‍💻</div><h4>Chuan Guo</h4><p class="org-affil">Meta Reality Labs, USA</p><p class="org-topic">Generative AI for digital humans</p></div>
+    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Narūnas Vaškevicius</h4><p class="org-affil">Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Dynamic perception & 3D scene graphs</p></div>
+    <div class="org-card"><div class="org-avatar">🧑‍💼</div><h4>Luigi Palmieri</h4><p class="org-affil">Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Predictive navigation & RL</p></div>
+  </div>
+</section>
+
+<section id="dates" class="reveal">
+  <div class="dates-banner">
+    <h2>Important Dates</h2>
+    <p>Exact dates will be announced soon</p>
+    <div class="dates-row">
+      <div class="date-item"><div class="label">Paper Submission</div><div class="value">TBA</div></div>
+      <div class="date-item"><div class="label">Notification</div><div class="value">TBA</div></div>
+      <div class="date-item"><div class="label">Camera-Ready</div><div class="value">TBA</div></div>
+      <div class="date-item"><div class="label">Workshop Day</div><div class="value">ECCV 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Contact: <a href="mailto:yufei.zhu@oru.se">yufei.zhu@oru.se</a></p>
+  <p class="footer-sub">Human Motion-Informed World Models & Socially Intelligent Action — ECCV 2026 Workshop</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
