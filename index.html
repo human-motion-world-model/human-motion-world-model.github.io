@@ -603,6 +603,218 @@ section {
   color: var(--text);
 }
 
+/* Submission */
+.submission-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.submission-card h3 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.submission-card h3:first-child { margin-top: 0; }
+
+.submission-card p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.submission-tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.track-box {
+  border-radius: var(--radius-sm);
+  padding: 1.2rem 1.4rem;
+  border: 1px solid;
+}
+
+.track-box.archival {
+  background: rgba(221,210,245,0.2);
+  border-color: var(--lavender);
+}
+
+.track-box.non-archival {
+  background: rgba(200,240,220,0.2);
+  border-color: var(--mint);
+}
+
+.track-box h4 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.track-box p {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+.submit-btn-row {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.submission-dates {
+  margin-top: 1rem;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.submission-dates-row {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+
+.submission-dates-row:last-child {
+  border-bottom: none;
+}
+
+.submission-dates-row:nth-child(odd) {
+  background: rgba(250,250,247,0.6);
+}
+
+.submission-dates-label {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.submission-dates-value {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+}
+
+.submission-dates-value .aoe {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-left: 0.4rem;
+}
+
+/* Timeline Dates */
+.dates-timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  padding: 1rem 0;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.dates-timeline::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--peach-deep), var(--lavender-deep), var(--mint-deep), var(--sky-deep));
+  border-radius: 2px;
+}
+
+.timeline-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 0.5rem;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 20px auto 0.8rem;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.timeline-item:nth-child(1) .timeline-dot { background: var(--peach-deep); color: var(--peach-deep); }
+.timeline-item:nth-child(2) .timeline-dot { background: var(--lavender-deep); color: var(--lavender-deep); }
+.timeline-item:nth-child(3) .timeline-dot { background: var(--mint-deep); color: var(--mint-deep); }
+.timeline-item:nth-child(4) .timeline-dot { background: var(--sky-deep); color: var(--sky-deep); }
+
+.timeline-item .label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item .value {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.timeline-item .note {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 600px) {
+  .submission-tracks {
+    grid-template-columns: 1fr;
+  }
+  .submission-dates-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+  .submission-dates-value {
+    text-align: left;
+  }
+  .dates-timeline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding: 0;
+  }
+  .dates-timeline::before {
+    display: none;
+  }
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    padding: 0.5rem 0;
+  }
+  .timeline-dot {
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -691,6 +903,7 @@ footer a:hover { color: var(--lavender-deep); }
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#topics">Topics</a>
+    <a href="#submission">Submission</a>
     <a href="#speakers">Speakers</a>
     <a href="#schedule">Schedule</a>
     <a href="#organizers">Organizers</a>
@@ -713,7 +926,7 @@ footer a:hover { color: var(--lavender-deep); }
       <span class="hero-pill">🚗 Autonomous Systems</span>
     </div>
     <div class="cta-row">
-      <a href="#dates" class="cta-btn primary">Key Dates</a>
+      <a href="#submission" class="cta-btn primary">Submit a Paper</a>
       <a href="#topics" class="cta-btn secondary">Call for Papers</a>
     </div>
   </div>
@@ -766,6 +979,56 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
         <li>Robustness to noise, occlusions, and distribution shifts</li>
         <li>Generalization across environments, agents, and human behaviors</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section id="submission" class="reveal">
+  <div class="section-header">
+    <div class="section-label">Submit</div>
+    <div class="section-title">Submission Guidelines</div>
+  </div>
+  <div class="submission-card">
+    <h3>Submission Tracks</h3>
+    <p>We welcome both archival and non-archival submissions.</p>
+    <div class="submission-tracks">
+      <div class="track-box archival">
+        <h4>Archival</h4>
+        <p>Original, unpublished work, either as an extended abstract or a full paper following the ECCV format (up to 14 pages, excluding references). Accepted archival papers will be included in the official ECCV 2026 Workshop Proceedings.</p>
+      </div>
+      <div class="track-box non-archival">
+        <h4>Non-Archival</h4>
+        <p>Work-in-progress, preliminary results, or relevant work previously published elsewhere (up to 14 pages, excluding references). These will be presented at the workshop but will not appear in the proceedings.</p>
+      </div>
+    </div>
+
+    <h3>Formatting and Review</h3>
+    <p>All submissions must use the official ECCV 2026 LaTeX template and follow the ECCV submission guidelines. The review process is double-blind: author identities will not be visible to reviewers, and reviewer identities will not be visible to authors. Please ensure your manuscript is properly anonymized.</p>
+
+    <h3>How to Submit</h3>
+    <p>All papers should be submitted through OpenReview. Please select "Archival" or "Non-Archival" as the submission type when submitting your paper.</p>
+    <div class="submit-btn-row">
+      <a href="https://openreview.net/group?id=thecvf.com/ECCV/2026/Workshop/HuMoWM" target="_blank" class="cta-btn primary">Submit on OpenReview</a>
+    </div>
+
+    <h3>Important Dates</h3>
+    <div class="submission-dates">
+      <div class="submission-dates-row">
+        <div class="submission-dates-label">Paper Submission Deadline</div>
+        <div class="submission-dates-value">Aug 1, 2026 <span class="aoe">(Anywhere on Earth)</span></div>
+      </div>
+      <div class="submission-dates-row">
+        <div class="submission-dates-label">Notification of Acceptance</div>
+        <div class="submission-dates-value">Aug 8, 2026</div>
+      </div>
+      <div class="submission-dates-row">
+        <div class="submission-dates-label">Camera-Ready Deadline</div>
+        <div class="submission-dates-value">Aug 15, 2026 <span class="aoe">(Anywhere on Earth)</span></div>
+      </div>
+      <div class="submission-dates-row">
+        <div class="submission-dates-label">Workshop Day</div>
+        <div class="submission-dates-value">ECCV 2026 <span class="aoe">(Exact date TBA)</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -857,12 +1120,37 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
 <section id="dates" class="reveal">
   <div class="dates-banner">
     <h2>Important Dates</h2>
-    <p>Exact dates will be announced soon</p>
-    <div class="dates-row">
-      <div class="date-item"><div class="label">Paper Submission</div><div class="value">TBA</div></div>
-      <div class="date-item"><div class="label">Notification</div><div class="value">TBA</div></div>
-      <div class="date-item"><div class="label">Camera-Ready</div><div class="value">TBA</div></div>
-      <div class="date-item"><div class="label">Workshop Day</div><div class="value">ECCV 2026</div></div>
+    <p>All deadlines are Anywhere on Earth (AoE) time</p>
+    <div class="dates-timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="label">Paper Submission</div>
+          <div class="value">Aug 1, 2026</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="label">Notification</div>
+          <div class="value">Aug 8, 2026</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="label">Camera-Ready</div>
+          <div class="value">Aug 15, 2026</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="label">Workshop Day</div>
+          <div class="value">ECCV 2026</div>
+          <div class="note">Exact date TBA</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
