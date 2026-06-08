@@ -379,6 +379,13 @@ section {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  overflow: hidden;
+}
+
+.speaker-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .speaker-card:nth-child(1) .speaker-avatar { background: var(--peach); }
@@ -525,6 +532,13 @@ section {
   justify-content: center;
   font-size: 1.3rem;
   background: var(--cream);
+  overflow: hidden;
+}
+
+.org-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .org-card h4 {
@@ -1040,31 +1054,31 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
   </div>
   <div class="speakers-grid">
     <div class="speaker-card">
-      <div class="speaker-avatar">👤</div>
+      <div class="speaker-avatar"><img src="figures/gerard_pons_moll.jpeg" alt="Gerard Pons-Moll"></div>
       <h3>Gerard Pons-Moll</h3>
-      <div class="speaker-affil">Professor, University of Tübingen</div>
+      <div class="speaker-affil">Full Professor, University of Tübingen</div>
       <span class="speaker-tag">Human motion, 3D tracking, virtual humans</span>
     </div>
     <div class="speaker-card">
-      <div class="speaker-avatar">👤</div>
+      <div class="speaker-avatar"><img src="figures/kai_arras.jpeg" alt="Kai O. Arras"></div>
       <h3>Kai O. Arras</h3>
-      <div class="speaker-affil">Professor, University of Stuttgart</div>
+      <div class="speaker-affil">Full Professor, University of Stuttgart</div>
       <span class="speaker-tag">Embodied intelligence, social robotics</span>
     </div>
     <div class="speaker-card">
-      <div class="speaker-avatar">👤</div>
+      <div class="speaker-avatar"><img src="figures/matthieu_cord.jpeg" alt="Matthieu Cord"></div>
       <h3>Matthieu Cord</h3>
-      <div class="speaker-affil">Professor, Sorbonne University / Director, valeo.ai</div>
+      <div class="speaker-affil">Full Professor, Sorbonne University / Director, valeo.ai</div>
       <span class="speaker-tag">World models, vision-language models</span>
     </div>
     <div class="speaker-card">
-      <div class="speaker-avatar">👤</div>
+      <div class="speaker-avatar"><img src="figures/lingni_ma.jpeg" alt="Lingni Ma"></div>
       <h3>Lingni Ma</h3>
       <div class="speaker-affil">Research Scientist, Meta Reality Labs</div>
       <span class="speaker-tag">3D scene modeling, digital humans</span>
     </div>
     <div class="speaker-card">
-      <div class="speaker-avatar">👤</div>
+      <div class="speaker-avatar"><img src="figures/yuji_yasui.jpeg" alt="Yuji Yasui"></div>
       <h3>Yuji Yasui</h3>
       <div class="speaker-affil">Executive Chief Engineer, Honda R&D</div>
       <span class="speaker-tag">Autonomous driving, human-machine collaboration</span>
@@ -1099,21 +1113,21 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
   </div>
   <div class="organizer-group-title">PhD Student Organizers</div>
   <div class="organizers-grid">
-    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Yasamin Borhani</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">3D localization & trajectory forecasting</p></div>
-    <div class="org-card"><div class="org-avatar">👩‍💻</div><h4>Mariam Hassan</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">World models for autonomous driving</p></div>
-    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Yang Gao</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">Motion prediction & 3D perception</p></div>
-    <div class="org-card"><div class="org-avatar">👩‍🎓</div><h4>Yi Yang</h4><p class="org-affil">KTH / Scania, Sweden</p><p class="org-topic">Prediction & planning in traffic</p></div>
-    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Yufei Zhu</h4><p class="org-affil">Örebro University, Sweden</p><p class="org-topic">Probabilistic human motion patterns</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/yasamin.jpeg" alt="Yasamin Borhani"></div><h4>Yasamin Borhani</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">3D localization & trajectory forecasting</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/mariam.jpeg" alt="Mariam Hassan"></div><h4>Mariam Hassan</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">World models for autonomous driving</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/yang.jpeg" alt="Yang Gao"></div><h4>Yang Gao</h4><p class="org-affil">EPFL, Switzerland</p><p class="org-topic">Motion prediction & 3D perception</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/yiya.jpeg" alt="Yi Yang"></div><h4>Yi Yang</h4><p class="org-affil">KTH / Scania, Sweden</p><p class="org-topic">Prediction & planning in traffic</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/yufei.jpeg" alt="Yufei Zhu"></div><h4>Yufei Zhu</h4><p class="org-affil">Örebro University, Sweden</p><p class="org-topic">Spatio-temporal data modeling</p></div>
   </div>
   <div class="organizer-group-title">Senior Organizers</div>
   <div class="organizers-grid">
-    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Andrey Rudenko</h4><p class="org-affil">TU Munich, Germany</p><p class="org-topic">Motion prediction & HRI</p></div>
-    <div class="org-card"><div class="org-avatar">👩‍🔬</div><h4>Wanyu Ma</h4><p class="org-affil">The Chinese University of Hong Kong, China</p><p class="org-topic">HRI & robotic manipulation</p></div>
-    <div class="org-card"><div class="org-avatar">👨‍🏫</div><h4>Achim J. Lilienthal</h4><p class="org-affil">TU Munich, Germany</p><p class="org-topic">Multi-modal perception & navigation</p></div>
-    <div class="org-card"><div class="org-avatar">👨‍🏫</div><h4>Martin Magnusson</h4><p class="org-affil">Örebro University, Sweden</p><p class="org-topic">3D mapping & autonomous systems</p></div>
-    <div class="org-card"><div class="org-avatar">🧑‍💻</div><h4>Chuan Guo</h4><p class="org-affil">Meta Reality Labs, USA</p><p class="org-topic">Generative AI for digital humans</p></div>
-    <div class="org-card"><div class="org-avatar">🧑‍🔬</div><h4>Narūnas Vaškevicius</h4><p class="org-affil">Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Dynamic perception & 3D scene graphs</p></div>
-    <div class="org-card"><div class="org-avatar">🧑‍💼</div><h4>Luigi Palmieri</h4><p class="org-affil">Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Predictive navigation & RL</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/andrey.jpeg" alt="Andrey Rudenko"></div><h4>Andrey Rudenko</h4><p class="org-affil">Postdoc, TU Munich, Germany</p><p class="org-topic">Motion prediction & HRI</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/wanyu.jpeg" alt="Wanyu Ma"></div><h4>Wanyu Ma</h4><p class="org-affil">Postdoc, The Chinese University of Hong Kong, China</p><p class="org-topic">Robotic manipulation</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/achim.jpeg" alt="Achim J. Lilienthal"></div><h4>Achim J. Lilienthal</h4><p class="org-affil">Full Professor & MIRMI Deputy Director, TU Munich, Germany</p><p class="org-topic">Multi-modal perception & navigation</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/martin.jpeg" alt="Martin Magnusson"></div><h4>Martin Magnusson</h4><p class="org-affil">Full Professor in computer science (robotics), Örebro University, Sweden</p><p class="org-topic">3D mapping & autonomous systems</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/chuan.jpeg" alt="Chuan Guo"></div><h4>Chuan Guo</h4><p class="org-affil">Senior Research Scientist, Meta Reality Labs, USA</p><p class="org-topic">Generative AI for digital humans</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/narunas.jpeg" alt="Narūnas Vaškevicius"></div><h4>Narūnas Vaškevicius</h4><p class="org-affil">Senior research scientist, Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Dynamic perception & 3D scene graphs</p></div>
+    <div class="org-card"><div class="org-avatar"><img src="figures/luigi.jpeg" alt="Luigi Palmieri"></div><h4>Luigi Palmieri</h4><p class="org-affil">Group leader and research scientist, Bosch Center for Artificial Intelligence, Germany</p><p class="org-topic">Predictive navigation & RL</p></div>
   </div>
 </section>
 
