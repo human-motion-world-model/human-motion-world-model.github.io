@@ -349,37 +349,55 @@ section {
 .topic-card:nth-child(3) li::before { background: var(--mint-deep); }
 
 /* Speakers */
-.speakers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.25rem;
+.speakers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .speaker-card {
-  text-align: center;
-  padding: 2rem 1.2rem 1.8rem;
+  --speaker-accent: var(--lavender-deep);
+  --speaker-soft: rgba(221,210,245,0.24);
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 2rem;
+  padding: 2rem;
   background: var(--white);
   border: 1px solid var(--border);
+  border-left: 5px solid var(--speaker-accent);
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-margin-top: 78px;
 }
 
 .speaker-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: var(--card-hover-shadow);
 }
 
+.speaker-card:nth-child(1) { --speaker-accent: var(--peach-deep); --speaker-soft: rgba(255,224,204,0.35); }
+.speaker-card:nth-child(2) { --speaker-accent: var(--mint-deep); --speaker-soft: rgba(200,240,220,0.35); }
+.speaker-card:nth-child(3) { --speaker-accent: var(--lavender-deep); --speaker-soft: rgba(221,210,245,0.35); }
+.speaker-card:nth-child(4) { --speaker-accent: var(--sky-deep); --speaker-soft: rgba(196,227,250,0.35); }
+.speaker-card:nth-child(5) { --speaker-accent: var(--yellow-deep); --speaker-soft: rgba(255,242,196,0.42); }
+
+.speaker-profile {
+  text-align: center;
+  align-self: start;
+}
+
 .speaker-avatar {
-  width: 80px;
-  height: 80px;
+  width: 142px;
+  height: 142px;
   border-radius: 50%;
   margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
   overflow: hidden;
+  background: var(--speaker-soft);
+  border: 5px solid var(--speaker-soft);
+  box-shadow: 0 4px 14px rgba(45,43,58,0.08);
 }
 
 .speaker-avatar img {
@@ -388,41 +406,94 @@ section {
   object-fit: cover;
 }
 
-.speaker-card:nth-child(1) .speaker-avatar { background: var(--peach); }
-.speaker-card:nth-child(2) .speaker-avatar { background: var(--mint); }
-.speaker-card:nth-child(3) .speaker-avatar { background: var(--lavender); }
-.speaker-card:nth-child(4) .speaker-avatar { background: var(--sky); }
-.speaker-card:nth-child(5) .speaker-avatar { background: var(--yellow); }
-
-.speaker-card h3 {
+.speaker-profile h3 {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
 }
 
 .speaker-affil {
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   font-weight: 500;
   color: var(--text-light);
-  margin-bottom: 0.6rem;
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
 }
 
 .speaker-tag {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 5px 11px;
   border-radius: 100px;
   color: var(--text-mid);
-  line-height: 1.4;
+  background: var(--speaker-soft);
+  line-height: 1.45;
 }
 
-.speaker-card:nth-child(1) .speaker-tag { background: var(--peach); }
-.speaker-card:nth-child(2) .speaker-tag { background: var(--mint); }
-.speaker-card:nth-child(3) .speaker-tag { background: var(--lavender); }
-.speaker-card:nth-child(4) .speaker-tag { background: var(--sky); }
-.speaker-card:nth-child(5) .speaker-tag { background: var(--yellow); }
+.speaker-content {
+  min-width: 0;
+}
+
+.speaker-talk-label,
+.speaker-content-label {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--speaker-accent);
+}
+
+.speaker-talk-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  margin: 0.35rem 0 1.2rem;
+}
+
+.speaker-info-block {
+  margin-top: 1.15rem;
+}
+
+.speaker-info-block h4 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.98rem;
+  margin-bottom: 0.45rem;
+}
+
+.speaker-info-block p {
+  color: var(--text-mid);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.speaker-placeholder {
+  padding: 0.85rem 1rem;
+  border: 1px dashed var(--speaker-accent);
+  border-radius: var(--radius-sm);
+  background: var(--speaker-soft);
+  color: var(--text-mid);
+  font-style: italic;
+}
+
+.speaker-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.35rem 0 0;
+}
+
+.schedule-info a {
+  color: var(--lavender-deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.schedule-info a:hover {
+  text-decoration: underline;
+}
 
 /* Schedule */
 .schedule-wrapper {
@@ -892,14 +963,18 @@ footer a:hover { color: var(--lavender-deep); }
   .nav-logo { font-size: 0.85rem; }
   nav a { font-size: 0.8rem; padding: 5px 10px; }
   section { padding: 3.5rem 1rem; }
-  .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  .speaker-card { grid-template-columns: 180px minmax(0, 1fr); gap: 1.5rem; padding: 1.5rem; }
+  .speaker-avatar { width: 120px; height: 120px; }
   .organizers-grid { grid-template-columns: repeat(2, 1fr); }
   .schedule-item { padding: 0.8rem 1rem; }
   .about-card { padding: 1.5rem; }
 }
 
 @media (max-width: 480px) {
-  .speakers-grid { grid-template-columns: 1fr; }
+  .speaker-card { grid-template-columns: 1fr; gap: 1.3rem; padding: 1.35rem; }
+  .speaker-profile { text-align: center; }
+  .speaker-avatar { width: 118px; height: 118px; }
+  .speaker-talk-title { font-size: 1.15rem; }
   .hero-pills { gap: 0.4rem; }
 }
 </style>
@@ -1051,38 +1126,129 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
   <div class="section-header">
     <div class="section-label">Keynotes</div>
     <div class="section-title">Keynote Speakers</div>
+    <p class="section-desc">Speaker biographies are available below. Talk titles and abstracts will be added as they are confirmed.</p>
   </div>
-  <div class="speakers-grid">
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="figures/gerard_pons_moll.jpeg" alt="Gerard Pons-Moll"></div>
-      <h3>Gerard Pons-Moll</h3>
-      <div class="speaker-affil">Full Professor, University of Tübingen</div>
-      <span class="speaker-tag">Human motion, 3D tracking, virtual humans</span>
-    </div>
-    <!-- <div class="speaker-card">
-      <div class="speaker-avatar"><img src="figures/kai_arras.jpeg" alt="Kai O. Arras"></div>
-      <h3>Kai O. Arras</h3>
-      <div class="speaker-affil">Full Professor, University of Stuttgart</div>
-      <span class="speaker-tag">Embodied intelligence, social robotics</span>
-    </div> -->
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="figures/matthieu_cord.jpeg" alt="Matthieu Cord"></div>
-      <h3>Matthieu Cord</h3>
-      <div class="speaker-affil">Full Professor, Sorbonne University / Director, valeo.ai</div>
-      <span class="speaker-tag">World models, vision-language models</span>
-    </div>
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="figures/lingni_ma.jpeg" alt="Lingni Ma"></div>
-      <h3>Lingni Ma</h3>
-      <div class="speaker-affil">Research Scientist, Meta Reality Labs</div>
-      <span class="speaker-tag">3D scene modeling, digital humans</span>
-    </div>
-    <div class="speaker-card">
-      <div class="speaker-avatar"><img src="figures/yuji_yasui.jpeg" alt="Yuji Yasui"></div>
-      <h3>Yuji Yasui</h3>
-      <div class="speaker-affil">Executive Chief Engineer, Honda R&D</div>
-      <span class="speaker-tag">Autonomous driving, human-machine collaboration</span>
-    </div>
+
+  <div class="speakers-list">
+    <article class="speaker-card" id="speaker-matthieu-cord">
+      <div class="speaker-profile">
+        <div class="speaker-avatar"><img src="figures/matthieu_cord.jpeg" alt="Matthieu Cord"></div>
+        <h3>Matthieu Cord</h3>
+        <div class="speaker-affil">Full Professor, Sorbonne University<br>Director, valeo.ai</div>
+        <span class="speaker-tag">World models, vision-language models</span>
+      </div>
+      <div class="speaker-content">
+        <span class="speaker-talk-label">Keynote Talk</span>
+        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+
+        <div class="speaker-info-block">
+          <h4>Abstract</h4>
+          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+        </div>
+
+        <div class="speaker-divider"></div>
+        <div class="speaker-info-block">
+          <h4>Biography</h4>
+          <p>Matthieu Cord is a Professor at Sorbonne University and Director of valeo.ai. He is also Principal Investigator of the Large Generative Vision-Language Models Chair at the Sorbonne Center for Artificial Intelligence. His research focuses on large-scale representation learning, vision-centric world models, and vision-language models.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="speaker-card" id="speaker-gerard-pons-moll">
+      <div class="speaker-profile">
+        <div class="speaker-avatar"><img src="figures/gerard_pons_moll.jpeg" alt="Gerard Pons-Moll"></div>
+        <h3>Gerard Pons-Moll</h3>
+        <div class="speaker-affil">Full Professor<br>University of Tübingen</div>
+        <span class="speaker-tag">Human motion, 3D tracking, virtual humans</span>
+      </div>
+      <div class="speaker-content">
+        <span class="speaker-talk-label">Keynote Talk</span>
+        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+
+        <div class="speaker-info-block">
+          <h4>Abstract</h4>
+          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+        </div>
+
+        <div class="speaker-divider"></div>
+        <div class="speaker-info-block">
+          <h4>Biography</h4>
+          <p>Gerard Pons-Moll is a Professor in the Department of Computer Science at the University of Tübingen. He is core faculty at the Tübingen AI Center and leads the Real Virtual Humans research group. His research covers human motion understanding and modeling, 3D tracking and reconstruction, analysis of people in videos, and virtual human models.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="speaker-card" id="speaker-lingni-ma">
+      <div class="speaker-profile">
+        <div class="speaker-avatar"><img src="figures/lingni_ma.jpeg" alt="Lingni Ma"></div>
+        <h3>Lingni Ma</h3>
+        <div class="speaker-affil">Research Scientist<br>Meta Reality Labs</div>
+        <span class="speaker-tag">3D scene modeling, digital humans</span>
+      </div>
+      <div class="speaker-content">
+        <span class="speaker-talk-label">Keynote Talk</span>
+        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+
+        <div class="speaker-info-block">
+          <h4>Abstract</h4>
+          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+        </div>
+
+        <div class="speaker-divider"></div>
+        <div class="speaker-info-block">
+          <h4>Biography</h4>
+          <p>Lingni Ma is a Research Scientist at Meta Reality Labs. She received her PhD from the Technical University of Munich. Her work focuses on real-time photorealistic 3D modeling and on human-body motion tracking and synthesis from multimodal egocentric data, contributing to realistic digital humans and human-centered world models.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="speaker-card" id="speaker-letizia-gionfrida">
+      <div class="speaker-profile">
+        <div class="speaker-avatar"><img src="figures/letizia.png" alt="Letizia Gionfrida"></div>
+        <h3>Letizia Gionfrida</h3>
+        <div class="speaker-affil">Lecturer in Computer Vision<br>King's College London</div>
+        <span class="speaker-tag">Embodied intelligence, human–robot interaction and collaboration</span>
+      </div>
+      <div class="speaker-content">
+        <span class="speaker-talk-label">Keynote Talk</span>
+        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+
+        <div class="speaker-info-block">
+          <h4>Abstract</h4>
+          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+        </div>
+
+        <div class="speaker-divider"></div>
+        <div class="speaker-info-block">
+          <h4>Biography</h4>
+          <p>Letizia Gionfrida is a Lecturer in Computer Vision in the Department of Informatics at King's College London. She received her PhD in Bioengineering from Imperial College London and was a Postdoctoral Research Fellow at Harvard University. Her research spans computer and robot vision, human–robot interaction and collaboration, rehabilitation and assistive robotics, wearable robotics, and adaptive robot learning.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="speaker-card" id="speaker-yuji-yasui">
+      <div class="speaker-profile">
+        <div class="speaker-avatar"><img src="figures/yuji_yasui.jpeg" alt="Yuji Yasui"></div>
+        <h3>Yuji Yasui</h3>
+        <div class="speaker-affil">Executive Chief Engineer<br>Honda R&amp;D</div>
+        <span class="speaker-tag">Autonomous driving, human-machine collaboration</span>
+      </div>
+      <div class="speaker-content">
+        <span class="speaker-talk-label">Keynote Talk</span>
+        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+
+        <div class="speaker-info-block">
+          <h4>Abstract</h4>
+          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+        </div>
+
+        <div class="speaker-divider"></div>
+        <div class="speaker-info-block">
+          <h4>Biography</h4>
+          <p>Yuji Yasui is an Executive Chief Engineer in the Innovative Research Excellence, Computer Science Domain at Honda R&amp;D Co., Ltd. He leads Honda CI (Cooperative Intelligence) research for autonomous driving. His expertise includes advanced automotive control systems and human-machine collaboration.</p>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1093,15 +1259,15 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
     <p class="section-desc">Half-day program</p>
   </div>
   <div class="schedule-wrapper">
-    <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome & Opening Remarks</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 1</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 2</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 3</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break & Poster Session</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 4</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Presentation & Award</h4><p>Selected paper oral presentation</p></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Invited Keynote Talk 5</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">12:25</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&A with speakers</p></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome &amp; Opening Remarks</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 1 — Matthieu Cord</h4><p>Talk title TBA · <a href="#speaker-matthieu-cord">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 2 — Gerard Pons-Moll</h4><p>Talk title TBA · <a href="#speaker-gerard-pons-moll">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Lingni Ma</h4><p>Talk title TBA · <a href="#speaker-lingni-ma">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break &amp; Poster Session</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Letizia Gionfrida</h4><p>Talk title TBA · <a href="#speaker-letizia-gionfrida">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Presentation &amp; Award</h4><p>Selected paper oral presentation</p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 5 — Yuji Yasui</h4><p>Talk title TBA · <a href="#speaker-yuji-yasui">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">12:25</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&amp;A with speakers</p></div></div>
     <div class="schedule-item"><div class="schedule-time">12:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Closing Remarks</h4></div></div>
   </div>
 </section>
