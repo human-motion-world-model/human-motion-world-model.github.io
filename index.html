@@ -63,9 +63,21 @@ nav {
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.nav-links { display: flex; gap: 0.25rem; }
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar { display: none; }
+
+.nav-links a { white-space: nowrap; flex-shrink: 0; }
 
 nav a {
   font-family: 'DM Sans', sans-serif;
@@ -125,6 +137,22 @@ nav a:hover {
   border: 1px solid var(--border);
   margin-bottom: 1.5rem;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.hero-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  background: rgba(255,242,196,0.65);
+  border: 1px solid var(--yellow-deep);
+  padding: 10px 24px;
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 2px 10px rgba(229,200,78,0.2);
 }
 
 h1 {
@@ -496,6 +524,24 @@ section {
 }
 
 /* Schedule */
+.schedule-date-banner {
+  max-width: 660px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  background: rgba(255,242,196,0.55);
+  border: 1px solid var(--yellow-deep);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.5rem;
+  text-align: center;
+}
+
 .schedule-wrapper {
   max-width: 660px;
   margin: 0 auto;
@@ -959,8 +1005,8 @@ footer a:hover { color: var(--lavender-deep); }
 
 /* Responsive */
 @media (max-width: 768px) {
-  nav { padding: 0 1rem; }
-  .nav-logo { font-size: 0.85rem; }
+  nav { padding: 0 0.75rem; gap: 0.5rem; }
+  .nav-logo { font-size: 0.78rem; }
   nav a { font-size: 0.8rem; padding: 5px 10px; }
   section { padding: 3.5rem 1rem; }
   .speaker-card { grid-template-columns: 180px minmax(0, 1fr); gap: 1.5rem; padding: 1.5rem; }
@@ -968,6 +1014,7 @@ footer a:hover { color: var(--lavender-deep); }
   .organizers-grid { grid-template-columns: repeat(2, 1fr); }
   .schedule-item { padding: 0.8rem 1rem; }
   .about-card { padding: 1.5rem; }
+  .hero-date { font-size: 0.95rem; padding: 9px 18px; }
 }
 
 @media (max-width: 480px) {
@@ -988,7 +1035,7 @@ footer a:hover { color: var(--lavender-deep); }
 </div>
 
 <nav>
-  <div class="nav-logo">HMWM @ ECCV 2026</div>
+  <div class="nav-logo">HuMoWM @ ECCV 2026</div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#topics">Topics</a>
@@ -1008,6 +1055,7 @@ footer a:hover { color: var(--lavender-deep); }
     <p class="subtitle">
       Bridging human motion modeling, visual world models, and embodied AI for socially intelligent perception and action.
     </p>
+    <div class="hero-date"><span>📅</span> September 9, 2026 · Morning Session (AM)</div>
     <div class="hero-pills">
       <span class="hero-pill">🏃 Motion Modeling</span>
       <span class="hero-pill">🌍 World Models</span>
@@ -1016,7 +1064,7 @@ footer a:hover { color: var(--lavender-deep); }
     </div>
     <div class="cta-row">
       <a href="#submission" class="cta-btn primary">Submit a Paper</a>
-      <a href="#topics" class="cta-btn secondary">Call for Papers</a>
+      <a href="#schedule" class="cta-btn secondary">Schedule</a>
     </div>
   </div>
 </section>
@@ -1116,7 +1164,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       </div>
       <div class="submission-dates-row">
         <div class="submission-dates-label">Workshop Day</div>
-        <div class="submission-dates-value">ECCV 2026 <span class="aoe">(Exact date TBA)</span></div>
+        <div class="submission-dates-value">Sep 9, 2026 <span class="aoe">(Morning Session)</span></div>
       </div>
     </div>
   </div>
@@ -1256,8 +1304,9 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
   <div class="section-header">
     <div class="section-label">Program</div>
     <div class="section-title">Workshop Schedule</div>
-    <p class="section-desc">Half-day program</p>
+    <p class="section-desc">Half-day program · Morning of September 9, 2026</p>
   </div>
+  <div class="schedule-date-banner"><span>📅</span> Wednesday, September 9, 2026 · AM Session</div>
   <div class="schedule-wrapper">
     <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome &amp; Opening Remarks</h4></div></div>
     <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 1 — Matthieu Cord</h4><p>Talk title TBA · <a href="#speaker-matthieu-cord">View speaker details</a></p></div></div>
@@ -1327,8 +1376,8 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
         <div class="timeline-dot"></div>
         <div>
           <div class="label">Workshop Day</div>
-          <div class="value">ECCV 2026</div>
-          <div class="note">Exact date TBA</div>
+          <div class="value">Sep 9, 2026</div>
+          <div class="note">Morning (AM) session</div>
         </div>
       </div>
     </div>
@@ -1337,7 +1386,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
 
 <footer>
   <p>Contact: <a href="mailto:yufei.zhu@oru.se">yufei.zhu@oru.se</a></p>
-  <p class="footer-sub">Human Motion-Informed World Models & Socially Intelligent Action — ECCV 2026 Workshop</p>
+  <p class="footer-sub">Human Motion-Informed World Models & Socially Intelligent Action — ECCV 2026 Workshop · September 9, 2026</p>
 </footer>
 
 <script>
