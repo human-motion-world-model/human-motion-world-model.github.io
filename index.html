@@ -555,6 +555,37 @@ section {
   font-style: italic;
 }
 
+.abstract-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.abstract-clamp.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.abstract-toggle {
+  margin-top: 0.4rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--speaker-accent);
+  cursor: pointer;
+}
+
+.abstract-toggle:hover {
+  text-decoration: underline;
+}
+
 .speaker-divider {
   height: 1px;
   background: var(--border);
@@ -650,6 +681,11 @@ section {
   font-size: 0.82rem;
   color: var(--text-light);
   margin-top: 1px;
+}
+
+.schedule-info p strong {
+  font-weight: 700;
+  color: var(--text);
 }
 
 /* Organizers */
@@ -1307,15 +1343,16 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
         <div class="speaker-avatar"><img src="figures/letizia.png" alt="Letizia Gionfrida"></div>
         <h3>Letizia Gionfrida</h3>
         <div class="speaker-affil">Lecturer in Computer Vision<br>King's College London</div>
-        <span class="speaker-tag">Embodied intelligence, human–robot interaction and collaboration</span>
+        <span class="speaker-tag">Embodied intelligence, human-robot interaction and collaboration</span>
       </div>
       <div class="speaker-content">
         <span class="speaker-talk-label">Keynote Talk</span>
-        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+        <h3 class="speaker-talk-title">Grounding Emergent Behaviour in Human Demonstrations: Low-Dimensional Structure for Cross-Embodiment </h3>
 
         <div class="speaker-info-block">
           <h4>Abstract</h4>
-          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+          <p class="abstract-clamp">Robust autonomy requires behaviours that are not merely replayed from expert data, but can adapt to new users, embodiments, and task demands. This talk asks how such behaviours can emerge from human demonstrations, reinforcement learning, and synthetic experience while remaining grounded in human capability and real-world interaction. Biological motor control offers a useful design principle: high-dimensional actuation is often organised into low-dimensional coordination patterns, or motor synergies, shaped by evolution, development, and experience. Rather than prescribing these structures, learning systems can discover task-relevant representations from interaction data, providing an emergent organising structure for efficient and interpretable control. I illustrate this perspective through a progression of our work: personalised wearable robotic assistance under simulated muscle impairment and synergy-based control from limited sensing. Building on these studies, I discuss ongoing work on shared latent representations that separate task intention from embodiment-specific execution, with the goal of transferring manipulation behaviours across users, wearable robot( e.g., prostheses), and robot morphologies. Grounding learning in demonstrations, retaining human correction in the loop, and exposing low-dimensional behavioural structure are not restrictions on robust autonomy; they are potential routes towards autonomy that remains adaptable, interpretable, and aligned with its users.</p>
+          <button type="button" class="abstract-toggle">Read more</button>
         </div>
 
         <div class="speaker-divider"></div>
@@ -1326,7 +1363,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       </div>
     </article>
 
-    <article class="speaker-card" id="speaker-yuji-yasui">
+    <!-- <article class="speaker-card" id="speaker-yuji-yasui">
       <div class="speaker-profile">
         <div class="speaker-avatar"><img src="figures/yuji_yasui.jpeg" alt="Yuji Yasui"></div>
         <h3>Yuji Yasui</h3>
@@ -1348,7 +1385,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
           <p>Yuji Yasui is an Executive Chief Engineer in the Innovative Research Excellence, Computer Science Domain at Honda R&amp;D Co., Ltd. He leads Honda CI (Cooperative Intelligence) research for autonomous driving. His expertise includes advanced automotive control systems and human-machine collaboration.</p>
         </div>
       </div>
-    </article>
+    </article> -->
   </div>
 </section>
 
@@ -1365,8 +1402,8 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
     <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 2 — Gerard Pons-Moll</h4><p>Talk title TBA · <a href="#speaker-gerard-pons-moll">View speaker details</a></p></div></div>
     <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Lingni Ma</h4><p>Talk title TBA · <a href="#speaker-lingni-ma">View speaker details</a></p></div></div>
     <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break &amp; Poster Session</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Letizia Gionfrida</h4><p>Talk title TBA · <a href="#speaker-letizia-gionfrida">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 5 — Yuji Yasui</h4><p>Talk title TBA · <a href="#speaker-yuji-yasui">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Letizia Gionfrida</h4><p><strong>Talk title:</strong> Grounding Emergent Behaviour in Human Demonstrations: Low-Dimensional Structure for Cross-Embodiment · <a href="#speaker-letizia-gionfrida">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 5 — TBA</h4><p>Talk title TBA</p></div></div>
     <div class="schedule-item"><div class="schedule-time">12:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&amp;A with speakers</p></div></div>
     <div class="schedule-item"><div class="schedule-time">12:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Presentation &amp; Award</h4></div></div>
     <div class="schedule-item"><div class="schedule-time">12:55</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Closing Remarks</h4></div></div>
@@ -1483,6 +1520,19 @@ navLinks.addEventListener('wheel', e => {
     navLinks.scrollLeft += e.deltaY;
   }
 }, { passive: false });
+
+// Expand/collapse long speaker abstracts
+document.querySelectorAll('.abstract-toggle').forEach(button => {
+  const text = button.previousElementSibling;
+  if (!text || text.scrollHeight - text.clientHeight <= 1) {
+    button.style.display = 'none';
+    return;
+  }
+  button.addEventListener('click', () => {
+    const expanded = text.classList.toggle('expanded');
+    button.textContent = expanded ? 'Show less' : 'Read more';
+  });
+});
 </script>
 
 </body>
