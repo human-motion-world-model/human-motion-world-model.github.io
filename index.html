@@ -932,6 +932,17 @@ section {
   margin-left: 0.4rem;
 }
 
+.date-old {
+  color: var(--text-light);
+  text-decoration: line-through;
+  font-weight: 500;
+  margin-right: 0.4rem;
+}
+
+.date-new {
+  color: var(--coral);
+}
+
 /* Timeline Dates */
 .dates-timeline {
   display: flex;
@@ -1244,7 +1255,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       </div>
       <div class="submission-dates-row">
         <div class="submission-dates-label">Notification of Acceptance</div>
-        <div class="submission-dates-value">Aug 8, 2026</div>
+        <div class="submission-dates-value"><span class="date-old">Aug 8, 2026</span><span class="date-new">Aug 10, 2026</span></div>
       </div>
       <div class="submission-dates-row">
         <div class="submission-dates-label">Camera-Ready Deadline</div>
@@ -1314,12 +1325,12 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       </div>
     </article>
 
-    <article class="speaker-card" id="speaker-lingni-ma">
+    <article class="speaker-card" id="speaker-jakob-engel">
       <div class="speaker-profile">
-        <div class="speaker-avatar"><img src="figures/lingni_ma.jpeg" alt="Lingni Ma"></div>
-        <h3>Lingni Ma</h3>
-        <div class="speaker-affil">Research Scientist<br>Meta Reality Labs</div>
-        <span class="speaker-tag">3D scene modeling, digital humans</span>
+        <div class="speaker-avatar"><img src="figures/JakobEngel.jpeg" alt="Jakob Engel"></div>
+        <h3>Jakob Engel</h3>
+        <div class="speaker-affil">Sr. Director of Research<br>Meta Reality Labs</div>
+        <span class="speaker-tag">SLAM, egocentric perception, spatial AI</span>
       </div>
       <div class="speaker-content">
         <span class="speaker-talk-label">Keynote Talk</span>
@@ -1333,7 +1344,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
         <div class="speaker-divider"></div>
         <div class="speaker-info-block">
           <h4>Biography</h4>
-          <p>Lingni Ma is a Research Scientist at Meta Reality Labs. She received her PhD from the Technical University of Munich. Her work focuses on real-time photorealistic 3D modeling and on human-body motion tracking and synthesis from multimodal egocentric data, contributing to realistic digital humans and human-centered world models.</p>
+          <p>Jakob Engel is Sr. Director of Research at Meta Reality Labs, where he leads egocentric machine perception and Spatial AI research for Project Aria. He received his PhD in Computer Science from the Technical University of Munich in 2016. His work on direct visual odometry, including DSO and LSD-SLAM, received the ECCV 2024 Koenderink (test of time) award, and his research focuses on grounding AI models in the physical 3D world and enabling them to learn from humans changing that world.</p>
         </div>
       </div>
     </article>
@@ -1400,7 +1411,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
     <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome &amp; Opening Remarks</h4></div></div>
     <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 1 — Matthieu Cord</h4><p>Talk title TBA · <a href="#speaker-matthieu-cord">View speaker details</a></p></div></div>
     <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 2 — Gerard Pons-Moll</h4><p>Talk title TBA · <a href="#speaker-gerard-pons-moll">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Lingni Ma</h4><p>Talk title TBA · <a href="#speaker-lingni-ma">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Jakob Engel</h4><p>Talk title TBA · <a href="#speaker-jakob-engel">View speaker details</a></p></div></div>
     <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break &amp; Poster Session</h4></div></div>
     <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Letizia Gionfrida</h4><p><strong>Talk title:</strong> Grounding Emergent Behaviour in Human Demonstrations: Low-Dimensional Structure for Cross-Embodiment · <a href="#speaker-letizia-gionfrida">View speaker details</a></p></div></div>
     <div class="schedule-item"><div class="schedule-time">11:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 5 — Misa Komuro</h4><p>Talk title TBA · <a href="#speaker-misa-komuro">View speaker details</a></p></div></div>
@@ -1451,7 +1462,7 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
         <div class="timeline-dot"></div>
         <div>
           <div class="label">Notification</div>
-          <div class="value">Aug 8, 2026</div>
+          <div class="value"><span class="date-old">Aug 8, 2026</span><span class="date-new">Aug 10, 2026</span></div>
         </div>
       </div>
       <div class="timeline-item">
