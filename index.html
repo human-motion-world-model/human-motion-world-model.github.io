@@ -482,6 +482,24 @@ section {
   object-fit: cover;
 }
 
+.speaker-project-image {
+  margin: 1rem auto 0;
+}
+
+.speaker-project-image img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px rgba(45,43,58,0.08);
+}
+
+.speaker-project-image figcaption {
+  margin-top: 0.45rem;
+  color: var(--text-light);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
 .speaker-profile h3 {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
@@ -647,7 +665,7 @@ section {
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
-  min-width: 54px;
+  min-width: 105px;
   color: var(--text);
 }
 
@@ -1286,11 +1304,12 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       </div>
       <div class="speaker-content">
         <span class="speaker-talk-label">Keynote Talk</span>
-        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+        <h3 class="speaker-talk-title">End-to-end Models for Autonomous Driving</h3>
 
         <div class="speaker-info-block">
           <h4>Abstract</h4>
-          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+          <p class="speaker-placeholder">Autonomous driving is shifting from modular pipelines toward holistic end-to-end architectures powered by foundation models. This talk presents DrivoR, a camera-only end-to-end planner that compresses sensor data into a few "scene tokens" and separates trajectory generation from trajectory scoring, enabling controllable driving behavior with a compact and scalable design.
+We then look beyond imitation learning: test-time trajectory optimization to surpass expert demonstrations, and ongoing work on world-model-based planning, where a learned dynamics model and reward model allow the agent to imagine and evaluate the consequences of its actions before acting.</p>
         </div>
 
         <div class="speaker-divider"></div>
@@ -1378,22 +1397,28 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
       <div class="speaker-profile">
         <div class="speaker-avatar"><img src="figures/misa.png" alt="Misa Komuro"></div>
         <h3>Misa Komuro</h3>
-        <div class="speaker-affil">Assistant Chief Engineer<br>Honda R&amp;D</div>
+        <div class="speaker-affil">Chief Engineer<br>Honda R&amp;D</div>
         <span class="speaker-tag">Autonomous driving, human-robot collaboration</span>
+        <figure class="speaker-project-image">
+          <img src="figures/wapochi.jpg" alt="WaPOCHI micro-mobility robot">
+          <figcaption>WaPOCHI micro-mobility robot</figcaption>
+        </figure>
       </div>
       <div class="speaker-content">
         <span class="speaker-talk-label">Keynote Talk</span>
-        <h3 class="speaker-talk-title">Talk title to be announced</h3>
+        <h3 class="speaker-talk-title">From Predicting Humans to Cooperating with Humans</h3>
 
         <div class="speaker-info-block">
           <h4>Abstract</h4>
-          <p class="speaker-placeholder">The talk abstract will be added soon.</p>
+          <p class="speaker-placeholder">As autonomous systems move from structured environments into everyday human spaces, their challenge is no longer simply to perceive the world and predict what will happen next. They must operate in environments where people continuously adapt to one another, where intentions are often implicit, and where the behavior of the autonomous system itself influences how others respond.
+This talk explores the challenges of building autonomous systems that can interact naturally and effectively with people, drawing on experiences from the development of WaPOCHI, a walking-support robot designed to operate in close proximity to humans. Real-world deployments have revealed that robust perception and motion prediction alone are often insufficient for seamless interaction. Instead, successful collaboration requires understanding behavior in the broader context of goals, intentions, and ongoing social dynamics.
+Recent advances in world models provide a promising foundation for addressing these challenges by enabling autonomous systems to represent and anticipate the evolution of complex environments. Building on these developments, the talk presents a broader vision of Cooperative Intelligence: autonomous agents that not only predict the world, but continuously understand, adapt to, and coordinate with the people and agents around them. Ultimately, the talk argues that the next frontier of autonomy lies not in prediction alone, but in enabling agents to participate as cooperative partners within human-centered environments.</p>
         </div>
 
         <div class="speaker-divider"></div>
         <div class="speaker-info-block">
           <h4>Biography</h4>
-          <p>Misa Komuro is an Assistant Chief Engineer in the Innovative Research Excellence at Honda R&amp;D Co., Ltd. She leads the development of WaPOCHI, a walking-support robot designed to accompany users, carry their belongings, and assist them in navigating crowded pedestrian environments.</p>
+          <p>Misa Komuro is Chief Engineer in the Innovative Research Excellence at Honda R&amp;D Co., Ltd. She leads the development of WaPOCHI, a walking-support robot designed to accompany users, carry their belongings, and assist them in navigating crowded pedestrian environments.</p>
         </div>
       </div>
     </article>
@@ -1406,18 +1431,17 @@ Topics include: 1. modeling human motion and activity in complex, interactive sc
     <div class="section-title">Workshop Schedule</div>
     <p class="section-desc">Half-day program · Morning of September 9, 2026</p>
   </div>
-  <div class="schedule-date-banner"><span>📅</span> Wednesday, September 9, 2026 · AM Session</div>
+  <div class="schedule-date-banner"><span>📅</span> Wednesday, September 9, 2026 · 08:00–12:30</div>
   <div class="schedule-wrapper">
-    <div class="schedule-item"><div class="schedule-time">09:00</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome &amp; Opening Remarks</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 1 — Matthieu Cord</h4><p>Talk title TBA · <a href="#speaker-matthieu-cord">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">09:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 2 — Gerard Pons-Moll</h4><p>Talk title TBA · <a href="#speaker-gerard-pons-moll">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">10:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Jakob Engel</h4><p>Talk title TBA · <a href="#speaker-jakob-engel">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">10:40</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break &amp; Poster Session</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">08:00–08:30</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Welcome &amp; Opening Remarks</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">08:30–09:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 1 — Matthieu Cord</h4><p>End-to-end Models for Autonomous Driving · <a href="#speaker-matthieu-cord">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:10–09:50</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 2 — Gerard Pons-Moll</h4><p>Talk title TBA · <a href="#speaker-gerard-pons-moll">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">09:50–10:30</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Coffee Break &amp; Poster Session</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">10:30–11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 3 — Jakob Engel</h4><p>Talk title TBA · <a href="#speaker-jakob-engel">View speaker details</a></p></div></div>
     <!-- <div class="schedule-item"><div class="schedule-time">11:10</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Letizia Gionfrida</h4><p><strong>Talk title:</strong> Grounding Emergent Behaviour in Human Demonstrations: Low-Dimensional Structure for Cross-Embodiment · <a href="#speaker-letizia-gionfrida">View speaker details</a></p></div></div> -->
-    <div class="schedule-item"><div class="schedule-time">11:20</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Misa Komuro</h4><p>Talk title TBA · <a href="#speaker-misa-komuro">View speaker details</a></p></div></div>
-    <div class="schedule-item"><div class="schedule-time">11:50</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&amp;A with speakers</p></div></div>
-    <div class="schedule-item"><div class="schedule-time">12:20</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Presentation &amp; Award</h4></div></div>
-    <div class="schedule-item"><div class="schedule-time">12:30</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Closing Remarks</h4></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:10–11:50</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Keynote 4 — Misa Komuro</h4><p>From Predicting Humans to Cooperating with Humans · <a href="#speaker-misa-komuro">View speaker details</a></p></div></div>
+    <div class="schedule-item"><div class="schedule-time">11:50–12:20</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Panel Discussion</h4><p>Open Q&amp;A with speakers</p></div></div>
+    <div class="schedule-item"><div class="schedule-time">12:20–12:30</div><div class="schedule-dot"></div><div class="schedule-info"><h4>Workshop Best Paper Award &amp; Closing Remarks</h4></div></div>
   </div>
 </section>
 
