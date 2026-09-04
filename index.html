@@ -294,6 +294,22 @@ h1 {
   border-color: var(--lavender);
 }
 
+/* Hero buttons: same weight, light grey */
+.cta-row .cta-btn.primary,
+.cta-row .cta-btn.secondary {
+  background: #D3D2DA;
+  color: var(--text);
+  border: 1px solid #C2C1CB;
+  box-shadow: none;
+}
+.cta-row .cta-btn.primary:hover,
+.cta-row .cta-btn.secondary:hover {
+  background: #C2C1CB;
+  border-color: #B0AFBB;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(45,43,58,0.1);
+}
+
 /* Sections */
 section {
   position: relative;
@@ -1257,7 +1273,7 @@ footer a:hover { color: var(--lavender-deep); }
       <span class="hero-pill">🚗 Autonomous Systems</span>
     </div>
     <div class="cta-row">
-      <a href="#submission" class="cta-btn primary">Submit a Paper</a>
+      <a href="#speakers" class="cta-btn primary">Speakers</a>
       <a href="#schedule" class="cta-btn secondary">Schedule</a>
     </div>
   </div>
